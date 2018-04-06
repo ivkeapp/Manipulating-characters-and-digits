@@ -1,0 +1,270 @@
+import java.util.Scanner;
+
+public class test {
+       
+    public static int nadjiZnak(char[] niz, char znak){
+        int brojac=0;
+        for (int i = 0; i < niz.length; i++) {
+            if(znak==niz[i]){
+            brojac++;
+        }}
+        //System.out.println("Zadati znak "+"'"+znak+"'"+" se pojavljuje "+brojac+" puta.");
+    return brojac;}
+    
+    public static boolean postoji(char[] niz, char znak){
+        for (int i = 0; i < niz.length; i++) {
+            if (niz[i] == znak)
+                return true;
+        }
+    return false;
+    }
+    public static void porediZnak(char[] niz, char znak){
+        char[] a=new char[niz.length];
+        for (int i = 0; i < niz.length; i++) {
+            if(nadjiZnak(niz, niz[i])>nadjiZnak(niz, znak)){
+                a[i]=niz[i];
+                //System.out.println("Pronadjen znak: "+"'"+niz[i]+"'"+" koji se pojavljuje vise puta od zadatog znaka.");
+            }
+        }
+        System.out.println("Znakovi koji se pojavljuju više puta od zadatog znaka su: ");
+        char[] b = new char[a.length];
+        boolean poruka=false;
+        for (int i = 0; i < a.length; i++) { 
+            char s;
+            s = a[i];
+            if(postoji(b, s)==false){
+                poruka=true;
+                b[i] =(char) (b[i]+ s);
+                System.out.print(s+" ");
+            }
+        }if(poruka==false){System.out.println("     ----Nije pronađen nijedan znak!----    ");}
+    }
+    
+    public static void porediDvaNiza(char[] niz1, char[] niz2){ //moze se napraviti i da ne ponavlja karaktere koje je pronasao, kao u prethodnom zadatku
+        int broj=1;
+        boolean nadjen=false;
+        for (int i = 0; i < niz1.length; i++) {
+            for (int j = 0; j < niz2.length; j++) {
+                if(niz1[i]==niz2[j]){nadjen=true;break;
+                }else{nadjen=false;
+                 }
+            }
+        if(nadjen==false){System.out.println("Nađen "+broj+". karakter "+"'"+niz1[i]+"'"+" kog nema u drugom nizu.");broj++;}
+        }
+    }
+    
+    public static void nadjiBrojZnak(char[] niz){
+        String n="";
+        for (int i = 0; i < niz.length; i++) {
+            if(niz[i]=='0'
+                ||niz[i]=='1'
+                ||niz[i]=='2'
+                ||niz[i]=='3'
+                ||niz[i]=='4'
+                ||niz[i]=='5'
+                ||niz[i]=='6'
+                ||niz[i]=='7'
+                ||niz[i]=='8'
+                ||niz[i]=='9'){
+                n+="(B) ";
+            }else{n+="(S) ";}
+        }
+        System.out.println(n);}
+    
+    public static void pretvoriUBinarniMathPow(char[] niz){
+        System.out.println();
+        System.out.println("Korišćenjem MathPow:");
+    int[] nizBinarnih=new int[16];
+        for (int i = 0; i < niz.length; i++) {
+            if ((niz[i] == 'a') ||
+                (niz[i] == 'e') ||
+                (niz[i] == 'i') ||
+                (niz[i] == 'o') ||
+                (niz[i] == 'u')){
+                nizBinarnih[i] = 1;
+            }else{
+                nizBinarnih[i]=0;
+            }
+        }
+    System.out.println("Binarni broj nastao od niza je:");
+        for (int i = 0; i < nizBinarnih.length; i++) {
+            System.out.print(nizBinarnih[i]+" ");
+        }System.out.println();
+    
+    int zbir = 0;
+    int brojac=0;
+        for (int i = nizBinarnih.length-1; i >= 0; i--) {
+           zbir+= nizBinarnih[i]*Math.pow(2, brojac); 
+           brojac++;
+        }
+        System.out.println("Decimalni oblik: "+zbir);
+    }
+    
+    
+    public static void pretvoriUBinarni(char[] niz){
+    int[] nizBinarnih=new int[16];
+    int brojac=0;
+        for (int i = niz.length-1; i >= 0; i--) {
+            if(niz[i]=='a'
+              ||niz[i]=='e'
+              ||niz[i]=='i'
+              ||niz[i]=='o'
+              ||niz[i]=='u'){nizBinarnih[brojac]=1;
+              
+            }else{nizBinarnih[brojac]=0;}
+            brojac++;
+        }
+        System.out.println("Binarni broj nastao od niza je:");
+        brojac=15;
+        for (int i = 0; i < nizBinarnih.length; i++) {
+            System.out.print(nizBinarnih[brojac]+" ");
+            brojac--;
+        }
+        
+        int[] suma={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        for (int i = 0; i < nizBinarnih.length ; i++) {
+            //Moze se koristiti i Math.pow funkcija
+            if(nizBinarnih[i]==1){
+                int dvojka=1;
+                int kvadrat=dvojka*2;
+                for (int j = 0; j < i-1; j++) {
+                    kvadrat=kvadrat*2;
+                }
+                suma[i]=kvadrat;
+            }
+        }int zbir=0;
+        for (int i = 0; i < suma.length; i++) {
+            zbir=zbir+suma[i];
+        }System.out.println();
+        if(nizBinarnih[15]==0){zbir=zbir+1;}
+        System.out.println("Decimalni oblik: "+zbir);
+    }
+    
+    public static void deljiviSaTri(int[] niz1, int[] niz2){
+    int suma=0;
+        for (int i = 0; i < niz1.length; i++) {
+            if(niz1[i]%3==0){
+            suma=suma+niz1[i];
+            }
+        }
+        for (int i = 0; i < niz2.length; i++) {
+            if(niz2[i]%3==0){
+            suma=suma+niz2[i];
+            }
+        }
+        System.out.println("Zbir brojeva deljivih sa 3 je: "+suma);
+    }
+
+    public static Scanner s=new Scanner(System.in);
+    
+    public static char[] popuniNizKaraktera(){
+        System.out.println("Koliko karaktera unosite? (Upisati broj)");
+        int duzinaNiza=s.nextInt();
+        System.out.println("Unesite karaktere:");
+        char[] niz=new char[duzinaNiza];
+        for (int i = 0; i < niz.length; i++) {
+            niz[i]=s.next().toLowerCase().charAt(0);
+        }
+        System.out.println("Uneli ste: ");
+        for (int i = 0; i < niz.length; i++) {
+            System.out.print(niz[i]+" ");
+        }
+        System.out.println();
+    return niz;
+    }
+    
+    public static char[] popuniNizKaraktera16(){
+        System.out.println("Unesite 16 karaktera:");
+        int duzinaNiza=16;
+        char[] niz=new char[duzinaNiza];
+        for (int i = 0; i < niz.length; i++) {
+            niz[i]=s.next().toLowerCase().charAt(0);
+        }
+        System.out.println("Uneli ste: ");
+        for (int i = 0; i < niz.length; i++) {
+            System.out.print(niz[i]+" ");
+        }
+        System.out.println();
+    return niz;
+    }
+    
+    public static int[] popuniNizBrojeva(){
+        System.out.println("Koliko brojeva unosite?");
+        int duzinaNiza=s.nextInt();
+        System.out.println("Unesite brojeve:");
+        int[] niz=new int[duzinaNiza];
+        for (int i = 0; i < niz.length; i++) {
+            niz[i]=s.nextInt();
+        }System.out.println("Uneli ste: ");
+        for (int i = 0; i < niz.length; i++) {
+            System.out.print(niz[i]+" ");
+        }
+        System.out.println();
+    return niz;
+    }
+    
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        //Niz k=new Niz();
+        
+        System.out.println("                           --------DOMAĆI ZADATAK--------");
+        System.out.println();
+        System.out.println("Da li želite da unosite karaktere niza ili da se karakteri sami generišu? Očekivani unos: (d/n)");
+        char odgovor=s.next().toLowerCase().charAt(0);
+        
+        try{
+        if(odgovor=='d'){
+        char[] niz=popuniNizKaraktera();
+        System.out.println("2. Zadatak: Napraviti metodu koja:");
+        System.out.println("a) prikazuje svaki znak koji se u datom nizu pojavljuje više puta od zadatog znaka.");
+        System.out.println("Unesite karakter za pretraživanje:");
+        char zadatiZnak=s.next().charAt(0);
+        porediZnak(niz, zadatiZnak);
+        System.out.println();
+        System.out.println("b) poredi dva niza znakova i prikazuje svaki znak koji se pojavljuje u prvom nizu, ali ne i u drugom.");
+        char[] niz2=popuniNizKaraktera();
+        porediDvaNiza(niz, niz2);
+        System.out.println();
+        System.out.println("c) formira string  u kome će pisati da li je slovo na datoj poziciji  u reči broj (B) ili slovo (S).");
+        nadjiBrojZnak(niz);
+        System.out.println();
+        System.out.println("d) za dati niz od 16 karaktera formira niz brojeva na taj način što će se u niz\n" +
+        "upisati 1, ako je slovo samoglasnik, a 0 ako je suglasnik. Potrebno je dobijeni binarni niz brojeva prebaciti u ceo broj i prikazati dati broj.");
+        char[] niz16=popuniNizKaraktera16();
+        pretvoriUBinarni(niz16);
+        System.out.println();
+        System.out.println("e) za dva niza brojeva, daje zbir sve brojeve koji nisu deljivi sa tri u datim nizovima.");
+        int[] nizBr1=popuniNizBrojeva();
+        int[] nizBr2=popuniNizBrojeva();
+        deljiviSaTri(nizBr1, nizBr2);
+        }
+        }catch(Exception ex){System.out.println("Nedozvoljen unos");}
+        if(odgovor=='n'){
+        char[] niz = {'s','9','k','u','s','r','k','6','s','r','k','u'};
+        char[] niz2 = {'j','5','c','e','o','3','o','u','q','p','o','1','s','e'};
+        char[] niz16 = {'e','i','k','o','h','j','o','w','n','r','a','t','k','m','u','z'};
+        int[] nizBr1 = {13, 14, 16, 3};
+        int[] nizBr2 = {3,16,14,5,9,6};
+
+        System.out.println("2. Zadatak: Napraviti metodu koja:");
+        System.out.println("a) prikazuje svaki znak koji se u datom nizu pojavljuje više puta od zadatog znaka.");
+        System.out.println("Unesite karakter za pretraživanje:");
+        char zadatiZnak=s.next().charAt(0);
+        porediZnak(niz, zadatiZnak);
+        System.out.println();
+        System.out.println("b) poredi dva niza znakova i prikazuje svaki znak koji se pojavljuje u prvom nizu, ali ne i u drugom.");
+        porediDvaNiza(niz, niz2);
+        System.out.println();
+        System.out.println("c) formira string  u kome će pisati da li je slovo na datoj poziciji  u reči broj (B) ili slovo (S).");
+        nadjiBrojZnak(niz);
+        System.out.println();
+        System.out.println("d) za dati niz od 16 karaktera formira niz brojeva na taj način što će se u niz\n" +
+        "upisati 1, ako je slovo samoglasnik, a 0 ako je suglasnik. Potrebno je dobijeni binarni niz brojeva prebaciti u ceo broj i prikazati dati broj.");
+        pretvoriUBinarni(niz16);
+        pretvoriUBinarniMathPow(niz16);
+        System.out.println();
+        System.out.println("e) za dva niza brojeva, daje zbir sve brojeve koji nisu deljivi sa tri u datim nizovima.");
+        deljiviSaTri(nizBr1, nizBr2);
+        }else if(odgovor!='d'){System.out.println("Pokrenite program ponovo.");}//moze se namestiti da se program sam pokrene ponovo nakon netacnog unosa sa while petljom i boolean promenljivom.
+    }
+}
